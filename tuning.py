@@ -106,8 +106,8 @@ def overtonetest():
         stream.write(cf)
 
         
-overtonetest()        
-# overtonecomposite(440.0)
+# overtonetest()        
+overtonecomposite(440.0)
 
 stream.stop_stream()
 stream.close()
