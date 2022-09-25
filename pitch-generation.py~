@@ -1,0 +1,35 @@
+import pyaudio
+import numpy as np
+
+p = pyaudio.PyAudio()
+
+volume = 0.5
+samplingrate = 44100
+duration = 100
+
+def sinfreq(freqfloat):
+    "Returns a sine array for a given frequency float"
+    return (np.sin(2*np.pi*np.arange(fs*duration)*freqfloat/fs)).astype(np.float32)
+
+def mergearrays(arrays):
+    arraycount = len(arrays)
+    arrs = arrays
+    merged = np.ndarray(44100*arraycount,)
+    indexnum = 0
+    for i in range(0, 44100*arraycount, arraycount):
+        for j in range(arraycount):
+            merged[i+j] = arrs[j][indexnum]
+        indexnum += 1
+    return merged
+
+def writecompositefreq(freqs):
+    stream.write(mergearrays(list(map(lambda x: volume*sinfreq(x), freqs))).tobytes())
+    
+def compositefreq(freqs):
+    n = len(freqs)
+    stream = p.open(format=pyaudio.paFloat32,
+                
+                channels=n,
+                rate=fs,
+                output=True)
+    

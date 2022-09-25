@@ -23,7 +23,7 @@ openE = volume*sinfreq(660.0)
 # for paFloat32 sample values must be in range [-1.0, 1.0]
 stream = p.open(format=pyaudio.paFloat32,
                 
-                channels=4,
+                channels=10,
                 rate=fs,
                 output=True)
 
@@ -86,13 +86,13 @@ def compositefreq(freqs):
     stream.write(mergearrays(list(map(lambda x: volume*sinfreq(x), freqs))).tobytes())
 
     
-# dualfreq(440.0, 660.0)
+dualfreq(440.0, 660.0)
 
-# dualfreq(293.6, 440.0)
+dualfreq(293.6, 440.0)
 
-# dualfreq(196, 293.6)
+dualfreq(196, 293.6)
 
-# dualfreq(293.6, 300.0)
+dualfreq(293.6, 300.0)
 
 # compositefreq([440.0, 660.0, 880.0])
 # dualfreq(440.0), volume*sinfreq(441.0))
@@ -107,7 +107,7 @@ def overtonetest():
 
         
 # overtonetest()        
-overtonecomposite(440.0)
+# overtonecomposite(440.0)
 
 stream.stop_stream()
 stream.close()
